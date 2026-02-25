@@ -4,7 +4,6 @@ import Contact from "./sections/Contact";
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
-import Testimonials from "./sections/Testimonials";
 
 const App = () => {
   return (
@@ -15,7 +14,6 @@ const App = () => {
         <Skills />
         <About />
         <Projects />
-        <Testimonials />
         <Contact />
       </main>
     </div>
