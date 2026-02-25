@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronDown, Dribbble } from "lucide-react";
+import { ArrowRight, ChevronDown, Download, Dribbble } from "lucide-react";
 import Button from "../components/Button";
 import AnimatedBorderButton from "../components/AnimatedBorderButton";
 import { BsBehance } from "react-icons/bs";
@@ -81,7 +81,10 @@ const Hero = () => {
               <Button size="lg">
                 View Projects <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton />
+              <AnimatedBorderButton>
+                <Download className="w-5 h-5" />
+                Download CV
+              </AnimatedBorderButton>
             </div>
 
             {/* Social Links */}
