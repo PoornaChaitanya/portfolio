@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import { Footer } from "./layout/Footer";
 import Navbar from "./layout/Navbar";
 import About from "./sections/About";
