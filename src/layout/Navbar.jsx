@@ -27,7 +27,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass-strong backdrop-blur-xl py-3" : "bg-transparent py-5"} z-50`}>
+    <header
+      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass-strong backdrop-blur-xl py-3" : "bg-transparent py-5"} z-50`}
+    >
       <nav className="container mx-auto px-12 flex items-center justify-between">
         <a
           href="#"
@@ -73,13 +75,16 @@ const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="text-lg text-muted-foreground hover:text-foreground py-2"
               >
                 {link.label}
               </a>
             ))}
 
-            <Button size="sm">Contact Me</Button>
+            <Button onClick={() => setIsMobileMenuOpen(false)}>
+              Contact Me
+            </Button>
           </div>
         </div>
       )}
