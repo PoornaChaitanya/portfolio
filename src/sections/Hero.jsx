@@ -1,7 +1,7 @@
-import { ArrowRight, ChevronDown, Download, Dribbble } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import Button from "../components/Button";
 import AnimatedBorderButton from "../components/AnimatedBorderButton";
-import { BsBehance } from "react-icons/bs";
+import { BsBehance, BsDribbble } from "react-icons/bs";
 import { FiGithub } from "react-icons/fi";
 import { RiLinkedinFill } from "react-icons/ri";
 
@@ -101,7 +101,7 @@ const Hero = () => {
                   href: "https://www.behance.net/chaitankaisarl/",
                 },
                 {
-                  icon: Dribbble,
+                  icon: BsDribbble,
                   href: "https://dribbble.com/chaitanyakaisarla",
                 },
               ].map((social, index) => (
