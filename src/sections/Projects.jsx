@@ -2,31 +2,51 @@ import { ArrowUpRight, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Forever - React E-Commerce Website",
+    title: "Netflix Inspited Movie Streaming App",
+    description:
+      "React-based movie streaming web application integrating third-party REST APIs with dynamic data fetching and reusable component architecture.",
+    image: "/projects/movie.png",
+    tags: [
+      "React",
+      "CSS",
+      "React Router",
+      "React Hooks",
+      "API Fetching",
+      "Context API",
+    ],
+    link: "https://movie-streaming-app-react.vercel.app/",
+    github: "https://github.com/PoornaChaitanya/netflix-clone-react",
+  },
+  {
+    title: "Forever - React E-Commerce Web App",
     description:
       "A fully responsive e-commerce platform built with React and Tailwind CSS, featuring product filtering, cart functionality, and dynamic routing.",
     image: "/projects/forever.png",
-    tags: ["React", "Tailwind CSS", "React Router", "Context API"],
-    link: "#",
-    github: "#",
-  },
-  {
-    title: "CoinVista - Crypto Market Tracker",
-    description:
-      "A real-time cryptocurrency tracking application built with React, featuring live market data from the CoinGecko API, search functionality, sorting controls, and grid/list view toggle. Data refreshes automatically every 30 seconds for up-to-date market insights.",
-    image: "/projects/coinvista.png",
-    tags: ["React", "REST API", "JavaScript", "React Router", "Responsive UI"],
-    link: "#",
-    github: "#",
+    tags: [
+      "React",
+      "Tailwind CSS",
+      "React Router",
+      "React Hooks",
+      "Context API",
+    ],
+    link: "https://forever-ecommerce-react.vercel.app/",
+    github: "https://github.com/PoornaChaitanya/forever-ecommerce-react",
   },
   {
     title: "Bento - Fitness App UI/UX Design Casestudy",
     description:
       "A modern fitness tracking app designed in Figma with user research, wireframes, and high-fidelity prototypes focused on usability and clarity.",
     image: "/projects/bento.png",
-    tags: ["Figma", "UI/UX", "Prototyping", "User Research"],
-    link: "#",
-    github: "#",
+    tags: [
+      "Figma",
+      "UI/UX",
+      "Wireframing",
+      "Prototyping",
+      "User Research",
+      "Case Study",
+    ],
+    link: "https://www.behance.net/gallery/231054787/Bento-Fitness-Diet-App-UI-UX-Casestudy",
+    github: false,
   },
 ];
 
@@ -85,14 +105,16 @@ const Projects = () => {
                   >
                     <ArrowUpRight className="w-5 h-5" />
                   </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
 
