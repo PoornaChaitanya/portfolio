@@ -14,7 +14,7 @@ const projects = [
       "API Fetching",
       "Context API",
     ],
-    link: "https://movie-streaming-app-react.vercel.app/",
+    link: "https://streamverse-app-pi.vercel.app/",
     github: "https://github.com/PoornaChaitanya/netflix-clone-react",
   },
   {
