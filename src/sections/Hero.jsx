@@ -80,8 +80,8 @@ const Hero = () => {
             </motion.div>
 
             {/* Headline */}
-            <motion.div variants={fadeUp} className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <motion.div variants={fadeUp} className="space-y-2 sm:space-y-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 <span className="text-primary glow-text">Designing </span>
                 and <span className="text-primary glow-text">developing</span>
                 <br />
@@ -91,7 +91,7 @@ const Hero = () => {
                   experiences
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg">
+              <p className="text-base sm:text-lg text-muted-foreground max-w-lg">
                 I build responsive, user-focused web applications with clean
                 design and modern technologies.
               </p>
@@ -136,7 +136,7 @@ const Hero = () => {
             className="relative"
           >
             {/* Profile Image */}
-            <div className="relative max-w-md mx-auto">
+            <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto mt-8 lg:mt-0">
               <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse" />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img

@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f1418;
-  --color-foreground: #f0f2f5;
-
-  --color-card: #141a1f;
-
   --color-primary: #20b2a6;
   --color-primary-foreground: #ffffff;
-
-  --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
-
-  --color-muted: #252e37;
-  --color-muted-foreground: #7a8491;
-
-  --color-border: #242b32;
-
+  --color-highlight: #f5a623;
   --radius: 0.75rem;
 
-  --color-highlight: #f5a623;
-  --color-surface: #1a2329;
+  --color-background-dark: #0f1418;
+  --color-foreground-dark: #f0f2f5;
+  --color-card-dark: #141a1f;
+  --color-secondary-dark: #1f2830;
+  --color-secondary-foreground-dark: #20b2a6;
+  --color-muted-dark: #252e37;
+  --color-muted-foreground-dark: #7a8491;
+  --color-border-dark: #242b32;
+  --color-surface-dark: #1a2329;
+
+  --color-background-light: #f8fafc;
+  --color-foreground-light: #0f172a;
+  --color-card-light: #ffffff;
+  --color-secondary-light: #e2e8f0;
+  --color-secondary-foreground-light: #0f172a;
+  --color-muted-light: #f1f5f9;
+  --color-muted-foreground-light: #64748b;
+  --color-border-light: #cbd5e1;
+  --color-surface-light: #ffffff;
+}
+
+:root {
+  --color-background: var(--color-background-light);
+  --color-foreground: var(--color-foreground-light);
+  --color-card: var(--color-card-light);
+  --color-secondary: var(--color-secondary-light);
+  --color-secondary-foreground: var(--color-secondary-foreground-light);
+  --color-muted: var(--color-muted-light);
+  --color-muted-foreground: var(--color-muted-foreground-light);
+  --color-border: var(--color-border-light);
+  --color-surface: var(--color-surface-light);
+}
+
+.dark {
+  --color-background: var(--color-background-dark);
+  --color-foreground: var(--color-foreground-dark);
+  --color-card: var(--color-card-dark);
+  --color-secondary: var(--color-secondary-dark);
+  --color-secondary-foreground: var(--color-secondary-foreground-dark);
+  --color-muted: var(--color-muted-dark);
+  --color-muted-foreground: var(--color-muted-foreground-dark);
+  --color-border: var(--color-border-dark);
+  --color-surface: var(--color-surface-dark);
 }
 
 @layer base {
@@ -76,6 +104,22 @@
     box-shadow:
       0 0 20px color-mix(in srgb, var(--color-primary) 20%, transparent),
       inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    z-index: 10;
+    border-radius: inherit;
+    mix-blend-mode: overlay;
   }
 }
 

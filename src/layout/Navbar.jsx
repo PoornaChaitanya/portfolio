@@ -63,21 +63,23 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
+        {/* Desktop Nav Actions */}
+        <div className="hidden md:flex items-center gap-4">
           <a href="#contact">
             <Button size="sm">Contact Me</Button>
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-foreground cursor-pointer"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          aria-label="Toggle Navigation Menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Nav Actions */}
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            className="p-2 text-foreground cursor-pointer"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}

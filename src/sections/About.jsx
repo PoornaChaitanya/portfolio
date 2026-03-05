@@ -16,7 +16,10 @@ const staggerContainer = {
 
 const About = () => {
   return (
-    <section id="about" className="md:px-12 py-32 relative overflow-hidden">
+    <section
+      id="about"
+      className="md:px-12 py-20 lg:py-32 relative overflow-hidden"
+    >
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
@@ -35,7 +38,7 @@ const About = () => {
 
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-5xl font-bold leading-tight text-secondary-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-secondary-foreground"
             >
               Turning ideas into
               <span className="font-serif italic font-normal text-white">
@@ -71,13 +74,13 @@ const About = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid sm:grid-cols-2 gap-6"
+            className="grid sm:grid-cols-2 gap-4 lg:gap-6"
           >
             {HIGHLIGHTS.map((item) => (
               <motion.div
                 variants={fadeUp}
                 key={item.id}
-                className="glass p-6 rounded-2xl hover:shadow-[0_0_20px_rgba(32,178,166,0.3)] transition-all duration-300"
+                className="glass p-5 sm:p-6 rounded-2xl hover:shadow-[0_0_20px_rgba(32,178,166,0.3)] transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-primary" />
