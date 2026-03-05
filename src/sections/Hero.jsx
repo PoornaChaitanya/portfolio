@@ -1,29 +1,45 @@
 import { ArrowRight, Download } from "lucide-react";
 import Button from "../components/Button";
 import AnimatedBorderButton from "../components/AnimatedBorderButton";
-import { BsBehance, BsDribbble } from "react-icons/bs";
-import { FiGithub } from "react-icons/fi";
-import { RiLinkedinFill } from "react-icons/ri";
+import { SOCIAL_LINKS } from "../constants";
+import { motion } from "framer-motion";
 
-const skills = [
-  "HTML",
-  "CSS",
-  "Javascript",
-  "React",
-  "Tailwind CSS",
-  "Figma",
-  "Github",
-  "AWS",
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
 
 const Hero = () => {
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Chaitanya_Kaisarla_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* BG */}
       <div className="absolute inset-0">
         <img
           src="/hero-bg.jpg"
-          alt="Hero image"
+          alt="Hero background"
+          loading="lazy"
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background"></div>
@@ -50,17 +66,22 @@ const Hero = () => {
       <div className="container mx-auto px-6 md:px-12 pt-32 pb-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
-          <div className="space-y-8">
-            <div className="animate-fade-in">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8"
+          >
+            <motion.div variants={fadeUp}>
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 Frontend Developer • UI/UX Designer
               </span>
-            </div>
+            </motion.div>
 
             {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
+            <motion.div variants={fadeUp} className="space-y-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 <span className="text-primary glow-text">Designing </span>
                 and <span className="text-primary glow-text">developing</span>
                 <br />
@@ -70,55 +91,50 @@ const Hero = () => {
                   experiences
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
+              <p className="text-lg text-muted-foreground max-w-lg">
                 I build responsive, user-focused web applications with clean
                 design and modern technologies.
               </p>
-            </div>
+            </motion.div>
 
             {/* CTA */}
-            <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
-                View Projects <ArrowRight className="w-5 h-5" />
-              </Button>
-              <AnimatedBorderButton>
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+              <a href="#projects">
+                <Button size="lg">
+                  View Projects <ArrowRight className="w-5 h-5" />
+                </Button>
+              </a>
+              <AnimatedBorderButton onClick={handleDownloadCV}>
                 <Download className="w-5 h-5" />
                 Download CV
               </AnimatedBorderButton>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
+            <motion.div variants={fadeUp} className="flex items-center gap-4">
               <span className="text-lg text-muted-foreground">Follow: </span>
-              {[
-                { icon: FiGithub, href: "https://github.com/PoornaChaitanya/" },
-                {
-                  icon: RiLinkedinFill,
-                  href: "https://www.linkedin.com/in/chaitanyakaisarla/",
-                },
-                {
-                  icon: BsBehance,
-                  href: "https://www.behance.net/chaitankaisarl/",
-                },
-                {
-                  icon: BsDribbble,
-                  href: "https://dribbble.com/chaitanyakaisarla",
-                },
-              ].map((social, index) => (
+              {SOCIAL_LINKS.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
                   className="p-4 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  {<social.icon size={20} />}
+                  <social.icon size={20} />
                 </a>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column - Profile Image */}
-          <div className="relative animate-fade-in animation-delay-300">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
+          >
             {/* Profile Image */}
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse" />
@@ -126,6 +142,7 @@ const Hero = () => {
                 <img
                   src="/profile-photo.png"
                   alt="Chaitanya Kaisarla"
+                  loading="lazy"
                   className="w-full aspect-4/5 object-cover rounded-2xl"
                 />
 
@@ -140,7 +157,7 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

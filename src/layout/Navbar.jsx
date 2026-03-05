@@ -1,16 +1,12 @@
 import { Menu, X } from "lucide-react";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
-
-const navLinks = [
-  { href: "#skills", label: "Skills" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-];
+import { NAV_LINKS } from "../constants";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +15,17 @@ const Navbar = () => {
       } else {
         setIsScrolled(false);
       }
+
+      // Check for active section
+      const sections = NAV_LINKS.map((link) => link.href.substring(1));
+      let current = "";
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= element.offsetTop - 150) {
+          current = `#${section}`;
+        }
+      }
+      setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -32,7 +39,7 @@ const Navbar = () => {
       <nav className="container mx-auto px-12 flex items-center justify-between">
         <a
           href="#"
-          className="text-xl font-bold tracking-tight hover:text-primary"
+          className="text-xl font-bold tracking-tight hover:text-primary transition-colors"
         >
           Chaitanya<span className="text-primary">.</span>
         </a>
@@ -40,11 +47,15 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
           <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-            {navLinks.map((link, index) => (
+            {NAV_LINKS.map((link) => (
               <a
                 href={link.href}
-                key={index}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
+                key={link.href}
+                className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                  activeSection === link.href
+                    ? "bg-surface text-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-surface/50"
+                }`}
               >
                 {link.label}
               </a>
@@ -63,6 +74,7 @@ const Navbar = () => {
         <button
           className="md:hidden p-2 text-foreground cursor-pointer"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          aria-label="Toggle Navigation Menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -72,21 +84,23 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden glass-strong animate-fade-in">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link, index) => (
+            {NAV_LINKS.map((link) => (
               <a
                 href={link.href}
-                key={index}
+                key={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
+                className={`text-lg py-2 transition-colors ${
+                  activeSection === link.href
+                    ? "text-primary font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 {link.label}
               </a>
             ))}
 
-            <a href="#contact">
-              <Button onClick={() => setIsMobileMenuOpen(false)}>
-                Contact Me
-              </Button>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full mt-2">Contact Me</Button>
             </a>
           </div>
         </div>

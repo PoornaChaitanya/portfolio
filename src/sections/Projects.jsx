@@ -1,54 +1,19 @@
 import { ArrowUpRight, Github } from "lucide-react";
+import { PROJECTS } from "../constants";
+import { motion } from "framer-motion";
 
-const projects = [
-  {
-    title: "Netflix Inspited Movie Streaming App",
-    description:
-      "React-based movie streaming web application integrating third-party REST APIs with dynamic data fetching and reusable component architecture.",
-    image: "/projects/movie.png",
-    tags: [
-      "React",
-      "CSS",
-      "React Router",
-      "React Hooks",
-      "API Fetching",
-      "Context API",
-    ],
-    link: "https://streamverse-app-pi.vercel.app/",
-    github: "https://github.com/PoornaChaitanya/netflix-clone-react",
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
   },
-  {
-    title: "Forever - React E-Commerce Web App",
-    description:
-      "A fully responsive e-commerce platform built with React and Tailwind CSS, featuring product filtering, cart functionality, and dynamic routing.",
-    image: "/projects/forever.png",
-    tags: [
-      "React",
-      "Tailwind CSS",
-      "React Router",
-      "React Hooks",
-      "Context API",
-    ],
-    link: "https://forever-ecommerce-react.vercel.app/",
-    github: "https://github.com/PoornaChaitanya/forever-ecommerce-react",
-  },
-  {
-    title: "Bento - Fitness App UI/UX Design Casestudy",
-    description:
-      "A modern fitness tracking app designed in Figma with user research, wireframes, and high-fidelity prototypes focused on usability and clarity.",
-    image: "/projects/bento.png",
-    tags: [
-      "Figma",
-      "UI/UX",
-      "Wireframing",
-      "Prototyping",
-      "User Research",
-      "Case Study",
-    ],
-    link: "https://www.behance.net/gallery/231054787/Bento-Fitness-Diet-App-UI-UX-Casestudy",
-    github: false,
-  },
-];
+};
 
 const Projects = () => {
   return (
@@ -61,33 +26,46 @@ const Projects = () => {
       <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mx-auto max-w-3xl mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mx-auto max-w-3xl mb-16"
+        >
+          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
             Featured Work
           </span>
           <h2>
             Selected projects that
             <span> showcase my skills.</span>
           </h2>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
+          <p className="text-muted-foreground mt-4">
             A selection of my recent work, from complex web applications to
             innovative tools that solve real-world problems.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, idx) => (
-            <div
-              key={idx}
-              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
-              style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-2 gap-8"
+        >
+          {PROJECTS.map((project) => (
+            <motion.div
+              variants={fadeUp}
+              key={project.id}
+              className="group glass rounded-2xl overflow-hidden md:row-span-1 flex flex-col"
             >
               {/* Image */}
               <div className="relative overflow-hidden aspect-video">
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div
@@ -101,6 +79,7 @@ const Projects = () => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit ${project.title} live site`}
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <ArrowUpRight className="w-5 h-5" />
@@ -110,6 +89,7 @@ const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${project.title} source code on GitHub`}
                       className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
                     >
                       <Github className="w-5 h-5" />
@@ -119,22 +99,25 @@ const Projects = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-4 flex flex-col grow">
                 <div className="flex items-start justify-between">
                   <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <ArrowUpRight
-                    className="w-5 h-5 
-                  text-muted-foreground group-hover:text-primary
-                   group-hover:translate-x-1 
-                   group-hover:-translate-y-1 transition-all"
-                  />
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${project.title} live site`}
+                    className="text-muted-foreground group-hover:text-primary mb-1 inline-block"
+                  >
+                    <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </a>
                 </div>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm grow">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-2">
                   {project.tags.map((tag, tagIdx) => (
                     <span
                       key={tagIdx}
@@ -145,9 +128,9 @@ const Projects = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

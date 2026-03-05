@@ -1,37 +1,4 @@
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
-import { BsBehance, BsDribbble } from "react-icons/bs";
-import { FiGithub } from "react-icons/fi";
-import { RiLinkedinFill } from "react-icons/ri";
-
-const socialLinks = [
-  {
-    icon: FiGithub,
-    href: "https://github.com/PoornaChaitanya/",
-    label: "GitHub",
-  },
-  {
-    icon: RiLinkedinFill,
-    href: "https://www.linkedin.com/in/chaitanyakaisarla/",
-    label: "LinkedIn",
-  },
-  {
-    icon: BsBehance,
-    href: "https://www.behance.net/chaitankaisarl/",
-    label: "Behance",
-  },
-  {
-    icon: BsDribbble,
-    href: "https://dribbble.com/chaitanyakaisarla",
-    label: "Dribbble",
-  },
-];
-
-const footerLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-];
+import { FOOTER_LINKS, SOCIAL_LINKS } from "../constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -52,7 +19,7 @@ const Footer = () => {
 
           {/* Links */}
           <nav className="flex flex-wrap justify-center gap-6">
-            {footerLinks.map((link) => (
+            {FOOTER_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -65,11 +32,12 @@ const Footer = () => {
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
+            {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
                 className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
               >

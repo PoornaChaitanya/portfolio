@@ -1,3 +1,4 @@
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import Footer from "./layout/Footer";
 import Navbar from "./layout/Navbar";
 import About from "./sections/About";
@@ -8,17 +9,36 @@ import Skills from "./sections/Skills";
 
 const App = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <Skills />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <HelmetProvider>
+      <div className="min-h-screen overflow-x-hidden">
+        <Helmet>
+          <title>Chaitanya Kaisarla | Frontend Developer</title>
+          <meta
+            name="description"
+            content="I build responsive, user-focused web applications with clean design and modern technologies."
+          />
+          <meta
+            name="keywords"
+            content="Frontend Developer, React, Tailwind CSS, UI/UX"
+          />
+          <meta property="og:title" content="Chaitanya Kaisarla | Portfolio" />
+          <meta
+            property="og:description"
+            content="I build responsive, user-focused web applications with clean design and modern technologies."
+          />
+          <meta property="og:type" content="website" />
+        </Helmet>
+        <Navbar />
+        <main>
+          <Hero />
+          <Skills />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 
