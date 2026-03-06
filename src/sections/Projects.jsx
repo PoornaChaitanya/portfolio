@@ -16,19 +16,16 @@ const fadeUp = {
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // Extract unique categories from projects tags, conceptually simplifying them
-  const categories = ["All", "React", "UI/UX"];
+  const uniqueTags = Array.from(
+    new Set(PROJECTS.flatMap((project) => project.tags))
+  );
+
+  const categories = ["All", "React", "Tailwind CSS", "Figma", "UI/UX"].filter(
+    (tag) => tag === "All" || uniqueTags.includes(tag)
+  );
 
   const filteredProjects = PROJECTS.filter((project) => {
     if (activeFilter === "All") return true;
-
-    // Map internal tags to generalized categories
-    if (activeFilter === "React") return project.tags.includes("React");
-    if (activeFilter === "UI/UX")
-      return (
-        project.tags.includes("Tailwind") || project.tags.includes("Figma")
-      );
-
     return project.tags.includes(activeFilter);
   });
 

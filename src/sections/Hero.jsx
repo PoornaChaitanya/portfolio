@@ -22,15 +22,15 @@ const staggerContainer = {
   },
 };
 
+const DO_COUNT = 30;
+const INITIAL_DOTS = [...Array(DO_COUNT)].map(() => ({
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  animationDuration: `${15 + Math.random() * 20}s`,
+  animationDelay: `${Math.random() * 5}s`,
+}));
+
 const Hero = () => {
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Chaitanya_Kaisarla_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -47,16 +47,16 @@ const Hero = () => {
 
       {/* Green Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {INITIAL_DOTS.map((dot, i) => (
           <div
             className="absolute w-1.5 h-1.5 rounded-full opacity-60"
             key={i}
             style={{
               backgroundColor: "#20B2A6",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${15 + Math.random() * 20}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
+              left: dot.left,
+              top: dot.top,
+              animation: `slow-drift ${dot.animationDuration} ease-in-out infinite`,
+              animationDelay: dot.animationDelay,
             }}
           ></div>
         ))}
@@ -104,10 +104,12 @@ const Hero = () => {
                   View Projects <ArrowRight className="w-5 h-5" />
                 </Button>
               </a>
-              <AnimatedBorderButton onClick={handleDownloadCV}>
-                <Download className="w-5 h-5" />
-                Download CV
-              </AnimatedBorderButton>
+              <a href="/resume.pdf" download="Chaitanya_Kaisarla_CV.pdf">
+                <AnimatedBorderButton tabIndex="-1">
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </AnimatedBorderButton>
+              </a>
             </motion.div>
 
             {/* Social Links */}

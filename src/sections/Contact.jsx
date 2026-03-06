@@ -66,7 +66,7 @@ const Contact = () => {
       } else {
         throw new Error("Submission failed");
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: "error",
         message: "Something went wrong. Please try again.",
@@ -201,6 +201,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
+                  aria-live="polite"
                   className={`flex items-center gap-3 p-4 rounded-xl ${
                     submitStatus.type === "success"
                       ? "bg-green-500/10 border border-green-500/20 text-green-400"
