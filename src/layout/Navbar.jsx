@@ -34,7 +34,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass-strong backdrop-blur-xl py-3" : "bg-transparent py-5"} z-50`}
+      className={`fixed top-0 left-0 right-0 transition-all duration-500 border-none ${isScrolled ? "glass-strong backdrop-blur-xl py-3" : "bg-transparent py-5"} z-50`}
     >
       <nav className="container mx-auto px-12 flex items-center justify-between">
         <a
